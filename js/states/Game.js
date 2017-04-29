@@ -2,10 +2,11 @@ var TSM = TSM || {};
 
 TSM.GameState = {
     init: function(){
-        this.game.physics.arcade.gravity.y = 1000;
         
         this.spaceBar = this.game.input.keyboard.addKey([Phaser.Keyboard.SPACEBAR]);
         
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.game.physics.arcade.gravity.y = 0;
         this.midScreenX = this.game.world.width * 0.5;
         this.midScreenY = this.game.world.height * 0.5;
     },
@@ -27,35 +28,50 @@ TSM.GameState = {
         //add slider and track
         this.track = this.game.add.sprite(this.game.world.width * 0.5, 25, 'sliderTrack');
         this.track.anchor.setTo(0.5);
+        this.track.enableBody = true;
+        this.track.immovable = true;
         this.player = this.game.add.sprite(this.track.left + 8, 25, 'slider');
         this.player.anchor.setTo(0.5);
+        this.player.allowGravity = true;
+        this.player.enableBody = true;
         this.targetRange = this.game.add.sprite(this.game.world.width * 0.5, 25, 'targetRange');
         this.targetRange.anchor.setTo(0.5);
+        this.targetRange.enableBody = true;
+        this.targetRange.immovable = true;
         
-        
+        //randomize target position
+        this.randomTargetPosition();
+
     },
     update: function(){
         //if(this.game.input.activePointer.isDown){
         //    this.swing();
         //}
+        
     },
-    
+    randomTargetPosition: function(){
+        this.targetRange.x = this.sliderPosition();
+    },
     sliderPosition: function() {
-        var min = Math.ceil(this.sliderTrack.left + 3);
-        var max = Math.floor(this.sliderTrack.right - 3);
+        var min = Math.ceil(this.track.left + this.targetRange.width * 0.5);
+        var max = Math.floor(this.track.right - this.targetRange.width * 0.5);
         return Math.floor(Math.random() * (max - min)) + min;
   
     },
     
     swing: function() {
-        this.uiBlocked = true;
+        this.axe.inputEnabled = false;
         var windUp = this.game.add.tween(this.axe).to({ angle: 15}, 100, Phaser.Easing.Linear.None, true);
         windUp.onComplete.add(function(){
+
         var swingAction = this.game.add.tween(this.axe).to({ angle: -60}, 100, Phaser.Easing.Linear.None, true);
             swingAction.onComplete.add(function(){
+
                 this.chopSound.play();
                 var resetPosition = this.game.add.tween(this.axe).to({ angle: 0}, 300, Phaser.Easing.Linear.None, true);
-                this.uiBlocked = false;
+                resetPosition.onComplete.add(function(){
+                    this.axe.inputEnabled = true;
+                }, this);
                 
             },this);
         }, this);
