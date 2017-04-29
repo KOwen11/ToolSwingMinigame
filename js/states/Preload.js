@@ -8,6 +8,9 @@ TSM.PreloadState = {
         //this.load.spritesheet('pickaxe', 'assets/images/pickaxe.png');
         this.load.image('axe', 'assets/images/axe.png');
         this.load.image('log', 'assets/images/log.png');
+        this.load.image('slider', 'assets/images/slider.png');
+        this.load.image('sliderTrack', 'assets/images/sliderTrack.png');
+        this.load.image('targetRange', 'assets/images/targetRange.png');
         this.load.image('background', 'assets/images/background.png');
         this.load.audio('chop', ['assets/audio/chop.mp3', 'assets/audio/chop.ogg']);
     },
