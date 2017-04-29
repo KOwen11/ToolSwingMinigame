@@ -1,0 +1,148 @@
+{"frames": [
+
+{
+	"filename": "raw/handAxe.png",
+	"frame": {"x":979,"y":1,"w":215,"h":499},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":215,"h":499},
+	"sourceSize": {"w":215,"h":499}
+},
+{
+	"filename": "raw/handAxe2.png",
+	"frame": {"x":1130,"y":1000,"w":206,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":206,"h":496},
+	"sourceSize": {"w":206,"h":496}
+},
+{
+	"filename": "raw/handAxe3.png",
+	"frame": {"x":1749,"y":499,"w":204,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":204,"h":496},
+	"sourceSize": {"w":204,"h":496}
+},
+{
+	"filename": "raw/handAxe4.png",
+	"frame": {"x":1723,"y":997,"w":219,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":219,"h":496},
+	"sourceSize": {"w":219,"h":496}
+},
+{
+	"filename": "raw/handAxe5.png",
+	"frame": {"x":886,"y":1000,"w":242,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":242,"h":496},
+	"sourceSize": {"w":242,"h":496}
+},
+{
+	"filename": "raw/handAxe6.png",
+	"frame": {"x":620,"y":997,"w":264,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":264,"h":496},
+	"sourceSize": {"w":264,"h":496}
+},
+{
+	"filename": "raw/handAxe7.png",
+	"frame": {"x":320,"y":997,"w":298,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":298,"h":496},
+	"sourceSize": {"w":298,"h":496}
+},
+{
+	"filename": "raw/handAxe8.png",
+	"frame": {"x":1,"y":997,"w":317,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":317,"h":496},
+	"sourceSize": {"w":317,"h":496}
+},
+{
+	"filename": "raw/handAxe9.png",
+	"frame": {"x":1612,"y":1,"w":336,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":336,"h":496},
+	"sourceSize": {"w":336,"h":496}
+},
+{
+	"filename": "raw/handAxe10.png",
+	"frame": {"x":1360,"y":997,"w":361,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":361,"h":496},
+	"sourceSize": {"w":361,"h":496}
+},
+{
+	"filename": "raw/handAxe11.png",
+	"frame": {"x":1360,"y":499,"w":387,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":387,"h":496},
+	"sourceSize": {"w":387,"h":496}
+},
+{
+	"filename": "raw/handAxe12.png",
+	"frame": {"x":1196,"y":1,"w":414,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":414,"h":496},
+	"sourceSize": {"w":414,"h":496}
+},
+{
+	"filename": "raw/handAxe13.png",
+	"frame": {"x":921,"y":502,"w":437,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":437,"h":496},
+	"sourceSize": {"w":437,"h":496}
+},
+{
+	"filename": "raw/handAxe14.png",
+	"frame": {"x":466,"y":499,"w":453,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":453,"h":496},
+	"sourceSize": {"w":453,"h":496}
+},
+{
+	"filename": "raw/handAxe15.png",
+	"frame": {"x":1,"y":499,"w":463,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":463,"h":496},
+	"sourceSize": {"w":463,"h":496}
+},
+{
+	"filename": "raw/handAxe16.png",
+	"frame": {"x":498,"y":1,"w":479,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":479,"h":496},
+	"sourceSize": {"w":479,"h":496}
+},
+{
+	"filename": "raw/handAxe17.png",
+	"frame": {"x":1,"y":1,"w":495,"h":496},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":495,"h":496},
+	"sourceSize": {"w":495,"h":496}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "handAxe.png",
+	"format": "RGBA8888",
+	"size": {"w":1954,"h":1497},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f8c1f4f2be9084a552ff508e8285586d:60aee137ea772d162db580b5f9e8b565:858471283a24233328001739eae1db67$"
+}
+}
