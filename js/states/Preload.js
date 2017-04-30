@@ -12,6 +12,8 @@ TSM.PreloadState = {
         this.load.image('sliderTrack', 'assets/images/sliderTrack.png');
         this.load.image('targetRange', 'assets/images/targetRange.png');
         this.load.image('background', 'assets/images/background.png');
+        this.load.image('swing', 'assets/images/swingButton.png');
+        this.load.image('reset', 'assets/images/resetButton.png');
         this.load.audio('chop', ['assets/audio/chop.mp3', 'assets/audio/chop.ogg']);
     },
     create: function(){
