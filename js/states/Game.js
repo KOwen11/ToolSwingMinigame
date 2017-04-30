@@ -9,11 +9,11 @@ TSM.GameState = {
         this.game.physics.arcade.gravity.y = 0;
         this.midScreenX = this.game.world.width * 0.5;
         this.midScreenY = this.game.world.height * 0.5;
-        this.playerSpeed = this.randSpeed();
-        this.maxSpeed = 500;
+        this.maxSpeed = 600;
         this.minSpeed = 200;
-        this.currentSpeed = 0;
-        this.speedMod = 0.025;
+        this.maxNegSpeed = -600;
+        this.minNegSpeed = -200;
+
     },
     create: function(){
         //add a log
@@ -39,51 +39,55 @@ TSM.GameState = {
         this.player.anchor.setTo(0.5);
         this.game.physics.arcade.enable(this.player);
 
-        //this.player.body.velocity.x = 200;
         this.player.allowGravity = true;
         this.targetRange = this.game.add.sprite(this.game.world.width * 0.5, 25, 'targetRange');
         this.targetRange.anchor.setTo(0.5);
         this.targetRange.enableBody = true;
         this.targetRange.immovable = true;
         this.player.bringToTop();
-        
-        
+        this.mousePositionX = this.game.input.activePointer.x;
         
         this.createHitButton();
         
         //randomize target position
-        this.randomTargetPosition();
-        this.player.body.velocity.x = this.playerSpeed;
         
-        this.shortSide = 0;
-        this.longSide = 0;
-        this.leftSide = '';
-        this.sideCheck();
+        
+
+
 
     },
     update: function(){
-        //if(this.game.input.activePointer.isDown){
-        //    this.swing();
-        //}
 
         var direction;
         
-        
-        
         if(this.player.body.velocity.x < 0){
-            direction = -1;
+            direction = 'left';
         }else if(this.player.body.velocity.x > 0){
-            direction = 1;
+            direction = 'right';
         }
         
-        if((this.player.right >= this.track.right - 9 && direction == 1) || (this.player.left <= this.track.left + 9 && direction == -1)){
+        if((this.player.right >= this.track.right - 9 && direction == 'right') || (this.player.left <= this.track.left + 9 && direction == 'left')){
             this.player.body.velocity.x *= -1;
         }   
-
         
         // variable speed relative to distance from target
-        
-        
+        if(this.player.x < this.targetRange.x && direction == 'right'){
+            //on the left moving towards target
+            this.player.body.velocity.x += (this.maxSpeed - this.player.body.velocity.x) * ((this.rightSide/this.track.width)/5);
+        }
+        if(this.player.x < this.targetRange.x && direction == 'left'){
+            //left moving away from target
+            this.player.body.velocity.x -= (this.player.body.velocity.x - this.minNegSpeed) * ((this.rightSide/this.track.width)/20);
+        }
+        if(this.player.x > this.targetRange.x && direction == 'right'){
+            //right moving away from target
+            this.player.body.velocity.x -= (this.player.body.velocity.x - this.minSpeed) * ((this.rightSide/this.track.width)/20);
+        }
+        if(this.player.x > this.targetRange.x && direction == 'left'){
+            //right moving towards target
+            this.player.body.velocity.x += (this.maxNegSpeed - this.player.body.velocity.x) * ((this.rightSide/this.track.width)/5);
+        }
+              
         
     },
     
@@ -91,11 +95,16 @@ TSM.GameState = {
         //swing button
         this.hitButton = this.game.add.button(this.axe.x, this.axe.y, 'swing');
         this.hitButton.anchor.setTo(0.5);
+        this.player.body.velocity.x = this.minSpeed;
+        this.randomTargetPosition();
+        
         this.hitButton.events.onInputDown.add(function(){
             this.swing();
             this.hitButton.kill();
             this.createResetButton();
+            this.killSpeed();
         },this);
+        
     },
     
     createResetButton: function(){
@@ -103,13 +112,10 @@ TSM.GameState = {
         this.resetButton = this.game.add.button(this.axe.x, this.axe.y, 'reset');
         this.resetButton.anchor.setTo(0.5);
         this.resetButton.events.onInputDown.add(function(){
-            var i = Math.random();
-            this.playerSpeed = this.randSpeed();
-            if(i<0.5){
-                this.playerSpeed *= -1;
-            }
             
-            this.player.body.velocity.x = this.playerSpeed;
+            
+            this.player.x = this.track.left + 10;
+            
             this.resetButton.kill();
             this.createHitButton();
         },this);
@@ -125,25 +131,21 @@ TSM.GameState = {
       }else if(distance < 83){
           console.log('good');
       }
-      console.log(distance);
+      console.log(distance + ' from target');
     },
     
     randomTargetPosition: function(){
         this.targetRange.x = this.sliderPosition();
+        
+        this.sideCheck();
     },
     
     sideCheck: function(){
-        if(this.track.width - this.targetRange.x - this.track.left > this.track.width * 0.5){
-            this.longSide = this.track.width - this.targetRange.x - this.track.left;
-            this.shortSide = this.track.width - this.longSide;
-            this.leftSide = 'short';
-            
-        }else if(this.track.width - this.targetRange.x - this.track.left < this.track.width * 0.5){
-            this.shortSide = this.track.width - this.targetRange.x - this.track.left;
-            this.longSide = this.track.width - this.shortSide;
-            this.leftSide = 'long';
-        }
-        //console.log(this.leftSide);
+        this.leftSide = this.targetRange.x - this.track.left;
+        this.rightSide = this.track.right - this.targetRange.x;
+        
+        console.log('target center: ' + (this.targetRange.x));
+        console.log('track center: ' + (this.track.x));
     },
     
     sliderPosition: function() {
@@ -152,17 +154,17 @@ TSM.GameState = {
         return Math.floor(Math.random() * (max - min)) + min;
   
     },
-    
-    randSpeed: function(){
-      var min = Math.ceil(200);
-      var max = Math.floor(500);
-      return Math.floor(Math.random() * (max - min)) + min;
+
+    killSpeed: function(){
+        this.player.body.velocity.x = 0;
     },
+    
     swing: function() {
         if(!this.uiBlocked){
             this.uiBlocked = true;
             this.hitCheck();
-            this.player.body.velocity.x = 0;
+            
+            console.log('Player position: ' + this.player.x);
             this.axe.inputEnabled = false;
             var windUp = this.game.add.tween(this.axe).to({ angle: 15}, 50, Phaser.Easing.Linear.None, true);
             windUp.onComplete.add(function(){
